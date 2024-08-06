@@ -63,4 +63,6 @@ group :development do
   # gem "spring"
 end
 
-gem 'active_model_serializers', '~> 0.10.14'
+gem 'jsonapi-serializer', '~> 2.2'
+
+gem "friendly_id", "~> 5.5"

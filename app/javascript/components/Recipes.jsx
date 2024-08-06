@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-
-function reshapeRecipe(recipes) {
-	return recipes.map(r => ({
-		...r?.attributes
-	}))
-}
+import React, { useEffect } from "react";
+import Recipe from "./Recipe";
+import { getRecipes } from "../api";
+import { useRecipeContext } from "../state";
 
 const Recipes = () => {
-	const navigate = useNavigate();
-	const [recipes, setRecipes] = useState([]);
+	const { state, dispatch } = useRecipeContext();
 
 	useEffect(() => {
-		const url = "/api/v1/recipes";
-		fetch(url)
-			.then((res) => {
-				if (res.ok) {
-					return res.json();
-				}
-				throw new Error("Network response was not ok.");
-			})
-			.then((res) => setRecipes(reshapeRecipe(res.data)))
-			.catch(() => navigate("/"));
+		fetchRecipes()
 	}, []);
 
+	async function fetchRecipes() {
+		const recipeData = await getRecipes();
+
+		dispatch({
+			type: 'SET_RECIPIES', payload: {
+				recipies: reshapeRecipe(recipeData)
+			}
+		})
+	}
 
 	const noRecipe = (
 		<div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
@@ -35,23 +29,8 @@ const Recipes = () => {
 	);
 
 
-	const allRecipes = recipes.map((recipe, index) => {
-		console.log({ recipe: recipe.image })
-		return (
-			<div key={recipe.title + index} className="col">
-				<div className="card mb-4">
-					<img
-						src={recipe.image}
-						className="card-img-top"
-						alt={`${recipe.title} image`}
-					/>
-					<div className="card-body">
-						<h5 className="card-title">{recipe.title}</h5>
-					</div>
-				</div>
-			</div>
-		)
-	}
+	const allRecipes = state.recipes.map((recipe, index) =>
+		<Recipe recipe={recipe} key={recipe.title + index} />
 	);
 
 	return (

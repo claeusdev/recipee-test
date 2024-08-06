@@ -1,2 +1,32 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.container {
+  max-width: 680px;
+}
+.recipe-card {
+  text-decoration: none;
+}
+
+.search {
+  box-shadow: 0 0.5px 2px 0 #0000004d;
+  padding: .5rem;
+  background: white;
+
+  input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
+
+.form-control.searchbox {
+   &:focus {
+      outline: none;
+    }
+}
