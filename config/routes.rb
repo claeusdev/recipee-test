@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipes, only: %i[index show]
       resources :categories, only: %i[index show]
+      get :search, to: 'searches#index'
       get :home, to: 'home#index'
     end
   end
