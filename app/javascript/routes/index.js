@@ -9,6 +9,7 @@ import CategoryDetails from "../components/CategoryDetails";
 import Categories from "../components/Categories";
 import { categoryLoader } from "../components/CategoryDetails";
 import App from "../components/App";
+import SearchResults, { searchLoader } from "../components/SearchResults";
 
 export const router = createBrowserRouter([
 	{
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
 			{
 				path: "/categories",
 				element: <Categories />,
+			},
+			{
+				path: "/search",
+				element: <SearchResults />,
+				loader: searchLoader
 			},
 		]
 	},
