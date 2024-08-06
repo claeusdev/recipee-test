@@ -128,6 +128,7 @@ def process_recipe_data(recipe_data)
           cuisine: r['cuisine'],
           cook_time: r['cook_time'],
           prep_time: r['prep_time'],
+          ratings: r['ratings'],
           ingredients: Ingredient.where(id: recipe_ingredients)
         )
       end

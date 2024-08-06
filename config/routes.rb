@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :api do
+  namespace :api, only: :json do
     namespace :v1 do
       resources :recipes, only: %i[index show]
+      resources :categories, only: %i[index show]
+      get :home, to: 'home#index'
     end
   end
-  get 'pages/index'
+
+  resources :categories, only: %i[index show]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
