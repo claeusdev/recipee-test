@@ -20,6 +20,15 @@ Here's an example entity-relationship diagram of the data model:
 
 <img width="813" alt="Screenshot 2024-08-08 at 18 37 52" src="https://github.com/user-attachments/assets/949485de-f8c5-4d82-a731-3608fc7034ff">
 
+## Configure to run locally
+
+1. Install gems: `bundle install`
+2. Database setup: `rake db:setup`
+3. Run the migrations: `rails db:migrate`
+4. Run the server: `bin/dev`
+   
+You should now be able to open the application in your browser by visiting `http://localhost:3000/`.
+
 ## Testing
 
 Tests have been added to spec out the most critical parts of the api. 
