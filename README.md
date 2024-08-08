@@ -1,5 +1,5 @@
 # Recipe Book
-Find live application deployed to fly.io at: [RecipeBook](https://recipee.fly.dev/)
+Find live application deployed to fly.io at: [RecipeBook](https://recipee.fly.dev/) (might take a few seconds to load because of free VM).
 ## User Stories
 As a user:
 - I am able to search by ingredients
