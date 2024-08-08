@@ -91,6 +91,8 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    dockerfile-rails (1.6.17)
+      rails (>= 3.0.0)
     drb (2.2.1)
     erubi (1.13.0)
     factory_bot (6.4.6)
@@ -271,6 +273,7 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   debug
+  dockerfile-rails (>= 1.6)
   factory_bot_rails
   faker
   friendly_id (~> 5.5)
