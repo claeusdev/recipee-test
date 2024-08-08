@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { sendRequest } from "../api";
 
 import { useRecipeContext } from "../state";
 import { formatResponseData, dasherizeName } from "../utils";
+import { SearchForm } from "./Search";
+
 
 export default () => {
 	const { state, dispatch } = useRecipeContext();
@@ -31,10 +33,7 @@ export default () => {
 				<p className="lead">
 					A curated list of recipes for the best homemade meal and delicacies.
 				</p>
-				<form role="search" onSubmit={handleSearchSubmit} id="search-form" className="input-group search rounded-1 p-sm">
-					<input name="q" type="search" class="form-control searchbox" placeholder="Find a recipe or ingredient..." aria-label="Search" aria-describedby="search-addon" ref={searchRef} />
-					<button type="submit" class="btn btn-primary rounded-2" data-mdb-ripple-init>search</button>
-				</form>
+				<SearchForm searchRef={searchRef} handleSearchSubmit={handleSearchSubmit} />
 			</div>
 
 			<hr className="my-4" />
@@ -43,7 +42,7 @@ export default () => {
 			</h4>
 			<section className="my-2 mb-8">
 				<div className="row">
-					{state.categories.map(cat => <Link to={`/categories/${dasherizeName(cat.name)}`} className="col-md-4">{cat.name}</Link>)}
+					{state.categories.map(cat => <Link to={`/search?category=${dasherizeName(cat.name)}`} className="col-md-4" key={cat.name}>{cat.name}</Link>)}
 				</div>
 				<div className="text-center my-4">
 					<Link

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Recipe from "./Recipe";
-import { getRecipes } from "../api";
-import { useRecipeContext } from "../state";
+import { RecipeCard } from ".";
+import { getRecipes } from "../../api";
+import { useRecipeContext } from "../../state";
 
-const Recipes = () => {
+export const Recipes = () => {
 	const { state, dispatch } = useRecipeContext();
 
 	useEffect(() => {
@@ -30,7 +30,7 @@ const Recipes = () => {
 
 
 	const allRecipes = state.recipes.map((recipe, index) =>
-		<Recipe recipe={recipe} key={recipe.title + index} />
+		<RecipeCard recipe={recipe} key={recipe.title + index} />
 	);
 
 	return (
@@ -48,13 +48,10 @@ const Recipes = () => {
 			<div className="py-5">
 				<main className="container">
 					<div className="row row-cols-1 row-cols-md-3 g-4" data-masonry='{"percentPosition": true }'>
-						{recipes.length > 0 ? allRecipes : noRecipe}
+						{state.recipes.length > 0 ? allRecipes : noRecipe}
 					</div>
 				</main>
 			</div>
 		</>
 	);
 };
-
-export default Recipes;
-
