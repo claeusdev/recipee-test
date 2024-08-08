@@ -1,15 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useLoaderData } from "react-router-dom";
-import { dasherizeName, buildSearchUrl, formatResponseData } from "../../utils";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { dasherizeName, formatResponseData } from "../../utils";
 import { PaginateCard } from "../Pagination";
 import { sendRequest } from "../../api";
-
-// export async function categoriesLoader({ request }) {
-// 	const url = new URL(request.url);
-// 	const page = url.searchParams.get("page") || 1;
-// 	const results = await sendRequest(`categories?page=${page}`);
-// 	return { categories: formatResponseData(results.data), page, meta: results.meta };
-// }
 
 export const Categories = () => {
 	const [categories, setCategories] = useState([])

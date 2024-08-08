@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import { sendRequest } from "../../api";
-
-export async function recipeLoader({ request }) {
-}
 
 export const RecipeDetails = () => {
 	const { id } = useParams();
