@@ -25,7 +25,8 @@ Here's an example entity-relationship diagram of the data model:
 1. Install gems: `bundle install`
 2. Database setup: `rake db:setup`
 3. Run the migrations: `rails db:migrate`
-4. Run the server: `bin/dev`
+4. Run `rails db:seed` to get recipe data from `db/recipe-en.json`
+5. Run the server: `bin/dev`
    
 You should now be able to open the application in your browser by visiting `http://localhost:3000/`.
 
