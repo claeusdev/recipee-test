@@ -4,8 +4,8 @@ module Api
   module V1
     class SearchesController < ApplicationController
       def index
-        @results = SearchQuery.new(search_term).to_relation
-        render json: RecipeSerializer.new(@results).to_json
+        @pagy, @records = pagy(SearchQuery.new(search_term, params[:filter], params[:category]).to_relation)
+        render json: { data: RecipeSerializer.new(@records), meta: @pagy }
       end
 
       private

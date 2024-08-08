@@ -3,12 +3,12 @@
 module Api
   module V1
     class RecipesController < ApplicationController
-      def index
-        @recipes = Recipe.includes(:user, :category, :ingredients).limit(50)
-        render json: RecipeSerializer.new(@recipes).to_json
-      end
+      def index; end
 
-      def show; end
+      def show
+        @recipe = Recipe.friendly.find(params[:id])
+        render json: RecipeSerializer.new(@recipe).to_json
+      end
     end
   end
 end

@@ -15,7 +15,7 @@ export const sendRequest = async (url) => {
 	try {
 		const response = await fetch(`${BASE_URL}/${url}`);
 		const results = await response.json();
-		return results.data;
+		return results;
 	} catch {
 		throw new Error("There was a problem completing the resuest.");
 	}
