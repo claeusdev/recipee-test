@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { dasherizeName } from "../../utils";
 
 export const RecipeCard = ({ recipe }) => {
 	return (
 		<Link to={
-			`/recipes/${dasherizeName(recipe.title.toLowerCase())}`
+			`/recipes/${recipe.slug}`
 		} state={{ recipe }} className="col-md-6 recipe-card">
 			<div className="card flex-row mb-2">
 				<object

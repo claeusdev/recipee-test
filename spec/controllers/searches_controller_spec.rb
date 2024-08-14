@@ -8,11 +8,13 @@ RSpec.describe Api::V1::SearchesController, type: :controller do
   let(:user) { create(:user) }
   let(:ingredient1) { create(:ingredient, description: 'Sugar') }
   let(:ingredient2) { create(:ingredient, description: 'Salt') }
+  let(:ingredient3) { create(:ingredient, description: 'Chocolate') }
 
   let!(:recipe1) do
     create(:recipe, title: 'Chocolate Cake', ratings: 4.6, cook_time: 60, user:,
                     category: category1).tap do |recipe|
       create(:recipe_ingredient, recipe:, ingredient: ingredient1)
+      create(:recipe_ingredient, recipe:, ingredient: ingredient3)
     end
   end
 
@@ -24,7 +26,7 @@ RSpec.describe Api::V1::SearchesController, type: :controller do
 
   describe 'GET #index' do
     context 'when searching by term' do
-      it 'returns recipes matching the title or ingredient description' do
+      it 'returns recipes matching the ingredient description' do
         get :index, params: { q: 'Chocolate' }
 
         expect(response).to have_http_status(:ok)

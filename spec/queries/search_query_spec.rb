@@ -9,11 +9,13 @@ RSpec.describe SearchQuery do
   let(:user) { create(:user) }
   let(:ingredient1) { create(:ingredient, description: 'Sugar') }
   let(:ingredient2) { create(:ingredient, description: 'Salt') }
+  let(:ingredient3) { create(:ingredient, description: 'Chocolate') }
 
   let!(:recipe1) do
     create(:recipe, title: 'Chocolate Cake', ratings: 4.6, cook_time: 60, user:,
                     category: category1).tap do |recipe|
       create(:recipe_ingredient, recipe:, ingredient: ingredient1)
+      create(:recipe_ingredient, recipe:, ingredient: ingredient3)
     end
   end
 
@@ -25,7 +27,7 @@ RSpec.describe SearchQuery do
 
   describe '#to_relation' do
     context 'when searching by term' do
-      it 'returns recipes matching the title or ingredient description' do
+      it 'returns recipes matching the ingredient description' do
         search_query = SearchQuery.new('Chocolate', nil, nil)
         results = search_query.to_relation
 
@@ -37,6 +39,13 @@ RSpec.describe SearchQuery do
         results = search_query.to_relation
 
         expect(results).to contain_exactly(recipe2)
+      end
+
+      it 'returns recipes matching the multiple ingredient description' do
+        search_query = SearchQuery.new('Chocolate, Sugar', nil, nil)
+        results = search_query.to_relation
+
+        expect(results).to contain_exactly(recipe1)
       end
     end
 
